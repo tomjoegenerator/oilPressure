@@ -22,7 +22,6 @@ Double Sided Prototype Printed Circuit Board
 1,000-ohm resistor
 
 
-Circuit diagram:
 
 
 
