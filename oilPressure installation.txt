@@ -1,1 +1,71 @@
-install genmon from https://github.com/jgyates/genmon:	sudo apt-get update	sudo apt-get install git	sudo apt-get update	sudo apt-get dist-upgrade	sudo reboot	git clone https://github.com/jgyates/genmon.git	cd genmon	bash ./genmonmaint.sh -iEnable spi bus:	sudo raspi-config	select 3 Interface option	select 14 SPI	select Yes	select Ok	Select FinishCopy programs to /home/pi/genmon, replace with your ip address:	scp oilPressure.sh pi@192.168.1.xxx:/home/pi/genmon/ 	(change path in oilPressure.sh to from cd /home/pi/genmon, if user not oi))	scp oilPressure.py pi@192.168.1.xxx:/home/pi/genmon/	ssh pi@192.168.1.xxx	cd genmon	sudo chmod 777 oilPressure.shInstall Adafruit drivers for MCP3008:	sudo apt-get update	sudo apt-get install build-essential 	sudo apt-get install python-dev	sudo apt-get install python-smbus	sudo apt-get install git	cd ~	git clone https://github.com/adafruit/Adafruit_Python_MCP3008.git	cd Adafruit_Python_MCP3008	sudo python3 setup.py installAdd to crontab:	sudo crontab -e	add:	@reboot /bin/bash /home/pi/genmon/oilPressure.sh  
+---------------------------------Siplified installation instructions------------------------------------
+1. Install and configure the genmon program as described in his wiki located here:
+   https://github.com/jgyates/genmon/wiki
+2. After the program is running correctly install the drivers for the ADC located here:
+   https://github.com/adafruit/Adafruit_Python_MCP3008
+3. Clone the oilpressure files
+   cd ~
+   cd genmon
+   git clone https://github.com/tomjoegenerator/oilPressure
+   cd oilPressure
+   cp oilPressure.sh /home/pi/genmon/
+   sudo chmod 777 oilPressure.sh
+   cp oilPressure.py /home/pi/genmon/
+4. Add to crontab to start automatically:
+   sudo crontab -e
+   add 
+   @reboot /bin/bash /home/pi/genmon/oilPressure.sh
+   at end
+   control + o
+   control + x
+5. Reboot
+   sudo reboot
+
+---------------------------------Past installation instructions------------------------------------------
+install genmon from https://github.com/jgyates/genmon:
+	sudo apt-get update
+	sudo apt-get install git
+	sudo apt-get update
+	sudo apt-get dist-upgrade
+	sudo reboot
+	git clone https://github.com/jgyates/genmon.git
+	cd genmon
+	bash ./genmonmaint.sh -i
+
+Enable spi bus:
+	sudo raspi-config
+	select 3 Interface option
+	select 14 SPI
+	select Yes
+	select Ok
+	Select Finish
+
+Copy programs to /home/pi/genmon, replace with your ip address:
+	scp oilPressure.sh pi@192.168.1.xxx:/home/pi/genmon/ 
+	(change path in oilPressure.sh to from cd /home/pi/genmon, if user not oi))
+	scp oilPressure.py pi@192.168.1.xxx:/home/pi/genmon/
+	ssh pi@192.168.1.xxx
+	cd genmon
+	sudo chmod 777 oilPressure.sh
+
+Install Adafruit drivers for MCP3008:
+	sudo apt-get update
+	sudo apt-get install build-essential 
+	sudo apt-get install python-dev
+	sudo apt-get install python-smbus
+	sudo apt-get install git
+	cd ~
+	git clone https://github.com/adafruit/Adafruit_Python_MCP3008.git
+	cd Adafruit_Python_MCP3008
+	sudo python3 setup.py install
+
+Add to crontab:
+	sudo crontab -e
+	add:
+	@reboot /bin/bash /home/pi/genmon/oilPressure.sh
+  control + o
+  control + x
+
+  
+
+
